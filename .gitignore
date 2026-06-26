@@ -56,6 +56,13 @@ desktop.ini
 *.swp
 *.swo
 
+# ===== SSH 密钥（绝对不能上传） =====
+/.ssh
+**/.ssh/
+**/id_rsa*
+**/id_ed25519*
+**/id_ecdsa*
+
 # ===== 日志 =====
 *.log
 logs/
