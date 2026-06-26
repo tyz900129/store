@@ -1,0 +1,24 @@
+# PawPatrol Store · 数据库配置模板
+# 复制本文件为 db.properties 并填入实际值；生产环境强烈建议通过环境变量注入
+# 注意：db.properties 已在 .gitignore 中，永远不要提交真实密码
+
+# ===== JDBC 配置 =====
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/pawpatrol?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+jdbc.user=root
+jdbc.password=CHANGE_ME
+
+# ===== 推荐：使用环境变量（生产环境） =====
+# DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS
+# 示例：
+#   export DB_HOST=mysql
+#   export DB_PORT=3306
+#   export DB_NAME=pawpatrol
+#   export DB_USER=root
+#   export DB_PASS=your_real_password
+
+# ===== 连接池配置（可选） =====
+# pool.maxActive=20
+# pool.maxIdle=10
+# pool.minIdle=2
+# pool.maxWait=10000

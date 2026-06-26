@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · PawPatrol</title>
+  <meta name="description" content="PawPatrol is a small studio of craftspeople designing thoughtful pet goods from Brooklyn, NY.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231F1A14'/%3E%3Ctext x='50' y='66' text-anchor='middle' fill='%23FAF6EE' font-family='serif' font-size='62' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/store/assets/css/base.css">
+  <link rel="stylesheet" href="/store/assets/css/layout.css">
+  <link rel="stylesheet" href="/store/assets/css/components.css">
+  <link rel="stylesheet" href="/store/assets/css/pages.css">
+</head>
+<body data-page="about">
+  <header id="site-header" class="site-header"></header>
+
+  <section class="about-hero">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag brand">★ OUR STORY</span>
+        <h1 style="margin-top:16px;">We make pet goods the way <em>grandma</em> used to.</h1>
+        <p class="lede">PawPatrol began in 2026 in a one-room studio in Brooklyn. We were tired of plastic pet products that look like they came from the same factory — so we started making our own. Today a small team of craftspeople hand-finishes every piece we sell, using natural materials and small-batch production.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="story">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">OUR VALUES</span>
+          <h2>Three things we won't compromise on.</h2>
+        </div>
+      </div>
+      <div class="value-grid" id="values"></div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--c-bg-warm);">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">SUSTAINABILITY</span>
+          <h2>Made to last. Built to be loved.</h2>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+        <div>
+          <p style="font-size:18px;color:var(--c-ink-2);line-height:1.7;">We've designed every product for a 10-year lifetime. The wool is biodegradable, the leather is vegetable-tanned, the ceramic is dishwasher-safe. When something wears out, send it back and we'll repair or replace it — forever, no questions asked.</p>
+          <p style="font-size:18px;color:var(--c-ink-2);line-height:1.7;">Our packaging is 100% recycled and recyclable. Our studio runs on renewable energy. And 1% of every order goes to local animal shelters.</p>
+        </div>
+        <div>
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=artisan%20hands%20working%20on%20wool%20felt%20pet%20product%2C%20craft%20workshop%2C%20warm%20light%2C%20editorial%20lifestyle%20photography&image_size=landscape_4_3" alt="" style="border-radius:22px;box-shadow:var(--sh-3);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">THE TEAM</span>
+          <h2>Real people, real pets.</h2>
+        </div>
+      </div>
+      <div class="team" id="team"></div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--c-bg-warm);">
+    <div class="container">
+      <div class="subscribe-band">
+        <div>
+          <h2>Join the pack.</h2>
+          <p>New drops, pet-care tips, and the occasional dog photo — straight to your inbox.</p>
+        </div>
+        <form id="aboutSub">
+          <input type="email" placeholder="you@email.com" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <script type="module" src="/store/assets/js/main.v5.js"></script>
+  <script type="module" src="/store/assets/js/pages/about.v5.js"></script>
+  <script type="module">
+    import { subscribeEmail } from '/store/assets/js/data.v5.js';
+    import { toast } from '/store/assets/js/ui.v5.js';
+    const f = document.getElementById('aboutSub');
+    if (f) f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = f.querySelector('input').value.trim();
+      await subscribeEmail(email);
+      toast('Welcome to the pack! Check your inbox.', 'success');
+      f.reset();
+    });
+  </script>
+</body>
+</html>

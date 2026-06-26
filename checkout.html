@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout · PawPatrol</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231F1A14'/%3E%3Ctext x='50' y='66' text-anchor='middle' fill='%23FAF6EE' font-family='serif' font-size='62' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/store/assets/css/base.css">
+  <link rel="stylesheet" href="/store/assets/css/layout.css">
+  <link rel="stylesheet" href="/store/assets/css/components.css">
+  <link rel="stylesheet" href="/store/assets/css/pages.css">
+</head>
+<body data-page="checkout">
+  <header id="site-header" class="site-header"></header>
+
+  <div id="checkoutRoot">
+    <section class="page-title">
+      <div class="container">
+        <div class="crumbs">
+          <a href="/store/">Home</a><span>/</span>
+          <a href="/store/cart.html">Cart</a><span>/</span>
+          <span>Checkout</span>
+        </div>
+        <h1>Checkout</h1>
+        <p>Secure checkout. Ships worldwide.</p>
+      </div>
+    </section>
+
+    <main class="section">
+      <div class="container">
+        <div class="steps">
+          <div class="step active"><span class="num">1</span><span>Cart</span></div>
+          <div class="sep"></div>
+          <div class="step active"><span class="num">2</span><span>Details</span></div>
+          <div class="sep"></div>
+          <div class="step"><span class="num">3</span><span>Confirmation</span></div>
+        </div>
+
+        <div class="checkout-page">
+          <form class="checkout-form" id="checkoutForm">
+            <h3>Contact</h3>
+            <div class="form-row">
+              <label>Email *</label>
+              <input type="email" name="email" required placeholder="you@email.com">
+            </div>
+
+            <h3 style="margin-top:24px;">Shipping address</h3>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Full name *</label>
+                <input type="text" name="name" required>
+              </div>
+              <div class="form-row">
+                <label>Phone</label>
+                <input type="tel" name="phone">
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Country *</label>
+              <select name="country" required>
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+                <option>Australia</option>
+                <option>Germany</option>
+                <option>France</option>
+                <option>Japan</option>
+                <option>China</option>
+                <option>Singapore</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Zip / Postal code *</label>
+                <input type="text" name="zip" required>
+              </div>
+              <div class="form-row">
+                <label>City *</label>
+                <input type="text" name="city" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Address line *</label>
+              <input type="text" name="line1" required placeholder="Street address, P.O. box, etc.">
+            </div>
+            <div class="form-row">
+              <label>Apartment, suite, etc.</label>
+              <input type="text" name="line2">
+            </div>
+
+            <h3 style="margin-top:24px;">Payment</h3>
+            <div class="pay-method">
+              <label class="active"><input type="radio" name="pay" value="card" checked> 💳 Card</label>
+              <label><input type="radio" name="pay" value="paypal"> PayPal</label>
+              <label><input type="radio" name="pay" value="apple">  Pay</label>
+              <label><input type="radio" name="pay" value="klarna"> Klarna</label>
+            </div>
+            <div class="form-row">
+              <label>Card number</label>
+              <input type="text" name="card" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label>Expiry</label>
+                <input type="text" name="exp" placeholder="MM / YY">
+              </div>
+              <div class="form-row">
+                <label>CVC</label>
+                <input type="text" name="cvc" placeholder="123">
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Order note</label>
+              <textarea name="note" placeholder="Any special requests?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:16px;">Place order · <span id="payTotal">$0.00</span></button>
+            <p style="text-align:center;color:var(--c-ink-3);font-size:12px;margin-top:12px;">By placing this order you agree to our Terms &amp; Privacy.</p>
+          </form>
+
+          <aside class="cart-summary" id="checkoutSummaryWrap" style="position:static;">
+            <h3>Your order</h3>
+            <div id="orderItems"></div>
+            <div id="checkoutSummary" style="margin-top:16px;border-top:1px solid var(--c-line);padding-top:16px;"></div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <script type="module" src="/store/assets/js/main.v5.js"></script>
+  <script type="module" src="/store/assets/js/pages/checkout.v5.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+/* PawPatrol Store · Base reset & design tokens */
+
+:root {
+  /* Brand */
+  --c-brand: #E07856;          /* warm terracotta */
+  --c-brand-deep: #B8553A;
+  --c-brand-soft: #FBE5D9;
+  --c-accent: #2D5F4E;         /* forest green */
+  --c-accent-soft: #D8E8DF;
+  --c-sun: #F2B541;            /* warm gold */
+  --c-coral: #E76F51;
+
+  /* Neutrals */
+  --c-bg: #FAF6EE;
+  --c-bg-warm: #F4ECDE;
+  --c-bg-card: #FFFFFF;
+  --c-ink: #1F1A14;
+  --c-ink-2: #4A4138;
+  --c-ink-3: #8B7E6E;
+  --c-line: #E5DCC9;
+  --c-line-2: #EFE7D2;
+
+  /* Functional */
+  --c-success: #2D5F4E;
+  --c-warn: #F2B541;
+  --c-error: #C84630;
+
+  /* Typography */
+  --f-display: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+  --f-body: 'Outfit', 'PingFang SC', 'Hiragino Sans GB', system-ui, -apple-system, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Sizing */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-base: 16px;
+  --fs-md: 18px;
+  --fs-lg: 22px;
+  --fs-xl: 28px;
+  --fs-2xl: 38px;
+  --fs-3xl: 54px;
+  --fs-4xl: 76px;
+
+  /* Spacing */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* Radius */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* Shadow */
+  --sh-1: 0 1px 2px rgba(31,26,20,.06), 0 4px 12px rgba(31,26,20,.05);
+  --sh-2: 0 4px 16px rgba(31,26,20,.08), 0 12px 40px rgba(31,26,20,.08);
+  --sh-3: 0 8px 32px rgba(31,26,20,.12), 0 24px 60px rgba(31,26,20,.10);
+
+  /* Motion */
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --ease-in-out: cubic-bezier(.65,0,.35,1);
+  --t-fast: .18s;
+  --t-base: .32s;
+  --t-slow: .6s;
+
+  /* Layout */
+  --container: 1280px;
+  --container-narrow: 920px;
+  --header-h: 76px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--f-body);
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--c-ink);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body { overflow-x: hidden; }
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease-out);
+}
+a:hover { color: var(--c-brand); }
+
+button {
+  font: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p { margin: 0 0 var(--s-4) 0; }
+
+::selection {
+  background: var(--c-brand);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--c-bg-warm); }
+::-webkit-scrollbar-thumb {
+  background: var(--c-line);
+  border-radius: 999px;
+  border: 2px solid var(--c-bg-warm);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--c-brand); }
+
+/* Reveal on load */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal .8s var(--ease-out) forwards;
+}
+.reveal.d1 { animation-delay: .08s; }
+.reveal.d2 { animation-delay: .16s; }
+.reveal.d3 { animation-delay: .24s; }
+.reveal.d4 { animation-delay: .32s; }
+.reveal.d5 { animation-delay: .40s; }
+.reveal.d6 { animation-delay: .48s; }
+
+@keyframes reveal {
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes paw-march {
+  0% { transform: translateX(-10%) rotate(-6deg); }
+  50% { transform: translateX(110%) rotate(6deg); }
+  100% { transform: translateX(110%) rotate(6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}

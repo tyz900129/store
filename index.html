@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PawPatrol · Thoughtful Pet Goods</title>
+  <meta name="description" content="PawPatrol — handcrafted pet goods for cats, dogs and small pets. Free worldwide shipping over $80. 30-day returns.">
+  <meta property="og:title" content="PawPatrol · Thoughtful Pet Goods">
+  <meta property="og:description" content="Handcrafted pet goods for the people who treat their pets like family.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.apperload.com/store/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231F1A14'/%3E%3Ctext x='50' y='66' text-anchor='middle' fill='%23FAF6EE' font-family='serif' font-size='62' font-weight='700'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/store/assets/css/base.css?v=3">
+  <link rel="stylesheet" href="/store/assets/css/layout.css?v=3">
+  <link rel="stylesheet" href="/store/assets/css/components.css?v=3">
+  <link rel="stylesheet" href="/store/assets/css/pages.css?v=3">
+</head>
+<body data-page="home">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="text reveal">
+          <span class="eyebrow">★ EST. 2026 · BROOKLYN</span>
+          <h1>Picked with <em>love</em>, made to be loved.</h1>
+          <p>PawPatrol is a small studio of craftspeople designing pet goods that look as good as they feel. From wool-felted cat caves to vegetable-t leather leashes — every piece is built to last, and to be noticed.</p>
+          <div class="cta-row">
+            <a href="/store/products.html" class="btn btn-primary btn-lg">Shop the collection →</a>
+            <a href="/store/about.html" class="btn btn-ghost btn-lg">Our story</a>
+          </div>
+        </div>
+        <div class="visual reveal d2">
+          <div class="sticker">★ Best of 2026</div>
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=happy%20golden%20retriever%20wearing%20terracotta%20bandana%20in%20a%20modern%20sunlit%20apartment%2C%20editorial%20lifestyle%20photography%2C%20warm%20tones%2C%20vertical%20portrait&image_size=portrait_4_3" alt="A happy dog wearing our terracotta bandana">
+          <div class="sticker2">Handmade<br>in NYC</div>
+        </div>
+      </div>
+      <div class="container hero-stats reveal d3">
+        <div class="item"><div class="num">12k+</div><div class="lbl">Happy pets</div></div>
+        <div class="item"><div class="num">42</div><div class="lbl">Countries shipped</div></div>
+        <div class="item"><div class="num">4.9</div><div class="lbl">Average rating</div></div>
+        <div class="item"><div class="num">100%</div><div class="lbl">Hand-finished</div></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">SHOP BY CATEGORY</span>
+            <h2>Everything for your good boy &amp; girl.</h2>
+          </div>
+          <a href="/store/products.html" class="btn btn-ghost">Browse all →</a>
+        </div>
+        <div class="cat-row" id="catRow"></div>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="section" style="background:var(--c-bg-warm);">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">BEST SELLERS</span>
+            <h2>The pieces our community keeps coming back for.</h2>
+          </div>
+          <a href="/store/products.html" class="btn btn-ghost">View all →</a>
+        </div>
+        <div class="product-grid" id="featuredGrid"></div>
+      </div>
+    </section>
+
+    <!-- PROMO SPLIT -->
+    <section class="section">
+      <div class="container">
+        <div class="promo">
+          <div class="p1">
+            <span class="tag solid-white" style="align-self:flex-start;margin-bottom:16px;">NEW FOR DOGS</span>
+            <h3>The Pup Edit</h3>
+            <p>Walk, ride, rest. A capsule of outdoor- and indoor-ready pieces for the modern dog.</p>
+            <a href="/store/products.html?pet=dog" class="btn btn-secondary" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.3);align-self:flex-start;">Shop dogs →</a>
+          </div>
+          <div class="p2">
+            <span class="tag ink" style="align-self:flex-start;margin-bottom:16px;">CAT TOWN</span>
+            <h3>The Kitty Collection</h3>
+            <p>Naps, scratches, sun puddles. Curated by cats, approved by humans.</p>
+            <a href="/store/products.html?pet=cat" class="btn btn-primary" style="align-self:flex-start;">Shop cats →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW ARRIVALS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">JUST DROPPED</span>
+            <h2>New this week.</h2>
+          </div>
+          <a href="/store/products.html?sort=new" class="btn btn-ghost">See all →</a>
+        </div>
+        <div class="product-grid" id="newGrid"></div>
+      </div>
+    </section>
+
+    <!-- STORIES -->
+    <section class="section" style="background:var(--c-bg-warm);">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">PAWPATROL STORIES</span>
+            <h2>From our community.</h2>
+            <p class="lede">Real photos and words from people who treat their pets like family.</p>
+          </div>
+        </div>
+        <div class="stories">
+          <article class="story">
+            <div class="cover"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=happy%20cat%20sleeping%20in%20wool%20cave%20in%20sunlit%20window%2C%20lifestyle%20photo%2C%20editorial&image_size=landscape_4_3" alt=""></div>
+            <div class="body">
+              <p class="quote">"My cat abandoned her usual bed on day one. Now she lives in the Cloud Nine cave."</p>
+              <div class="author">
+                <div class="avatar">M</div>
+                <div><div class="name">Mei L.</div><div class="role">Brooklyn, NY</div></div>
+              </div>
+            </div>
+          </article>
+          <article class="story">
+            <div class="cover"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=dog%20walking%20in%20park%20with%20leather%20leash%20sunset%20lifestyle%20photo%2C%20warm%20tone&image_size=landscape_4_3" alt=""></div>
+            <div class="body">
+              <p class="quote">"The Bark &amp; Breeze leash is the only one I trust with my 80-lb mutt. Beautiful, too."</p>
+              <div class="author">
+                <div class="avatar">J</div>
+                <div><div class="name">Jordan K.</div><div class="role">Austin, TX</div></div>
+              </div>
+            </div>
+          </article>
+          <article class="story">
+            <div class="cover"><img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ceramic%20pet%20bowl%20on%20kitchen%20floor%20with%20small%20dog%20eating%2C%20lifestyle%20photo%2C%20warm%20light&image_size=landscape_4_3" alt=""></div>
+            <div class="body">
+              <p class="quote">"The Pebble bowl looks like a piece of art. My vet complimented the whisker-friendly shape."</p>
+              <div class="author">
+                <div class="avatar">A</div>
+                <div><div class="name">Anya R.</div><div class="role">Berlin, DE</div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND STRIP -->
+    <section class="section tight">
+      <div class="container">
+        <div class="brand-strip">
+          <span class="item">Vogue</span>
+          <span class="item">Dwell</span>
+          <span class="item">Architectural Digest</span>
+          <span class="item">Kinfolk</span>
+          <span class="item">Monocle</span>
+          <span class="item">Wallpaper*</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section">
+      <div class="container">
+        <div class="subscribe-band">
+          <div>
+            <h2>Get 10% off your first order.</h2>
+            <p>Join the pack. New drops, pet-care tips, and the occasional dog photo — straight to your inbox.</p>
+          </div>
+          <form id="homeSub">
+            <input type="email" placeholder="you@email.com" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <script type="module" src="/store/assets/js/main.v5.js"></script>
+  <script type="module" src="/store/assets/js/pages/home.v5.js"></script>
+  <script type="module">
+    import { subscribeEmail } from '/store/assets/js/data.v5.js';
+    import { toast } from '/store/assets/js/ui.v5.js';
+    const f = document.getElementById('homeSub');
+    if (f) f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = f.querySelector('input').value.trim();
+      await subscribeEmail(email);
+      toast('Welcome to the pack! Check your inbox.', 'success');
+      f.reset();
+    });
+  </script>
+</body>
+</html>
