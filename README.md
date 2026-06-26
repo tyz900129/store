@@ -1,86 +1,123 @@
-# PawPatrol Store · 跨境电商独立站
+# PawPatrol Store
 
-> Handcrafted pet goods for cats, dogs and small pets.
-> 部署在 Tomcat (端口 8866)，生产域名 `https://www.apperload.com/store/`。
+> 跨境电商独立站框架 · 主营宠物周边 · Tomnee 的第一个 storefront
+
+## 在线访问
+
+🌐 **https://www.apperload.com/store/**
+
+## 技术栈
+
+- **前端**：原生 HTML + CSS + ES Module JavaScript（无构建步骤）
+- **后端**：JSP + JDBC 直连 MySQL
+- **服务器**：Tomcat 8.5+（端口 8866，Cloudflare 隧道映射到域名）
+- **数据库**：MySQL 5.7+ / 8.0
 
 ## 目录结构
 
 ```
 store/
-├── index.html             # 首页
-├── products.html          # 列表页
-├── product.html           # 详情页
-├── cart.html              # 购物车
-├── checkout.html          # 结算
-├── about.html             # 关于
-├── contact.html           # 联系
-├── 404.html               # 错误页
+├── index.html              # 首页
+├── products.html           # 商品列表
+├── product.html            # 商品详情
+├── cart.html               # 购物车
+├── checkout.html           # 结算
+├── about.html              # 关于我们
+├── contact.html            # 联系我们
+├── 404.html                # 404 页面
 ├── assets/
-│   ├── css/               # 4 个 CSS 文件（base / layout / components / pages）
-│   ├── js/                # main + data + cart + ui + pages/*
-│   └── img/               # 图片（默认通过 Unsplash 远程加载）
-├── api/                   # JSP 后端 API（输出 JSON）
-│   ├── products.jsp
-│   ├── categories.jsp
-│   ├── subscribe.jsp
-│   └── order.jsp
+│   ├── css/                # 样式（base/layout/components/pages）
+│   ├── js/                 # JS 模块（data/cart/ui/main/pages）
+│   └── img/                # 图片
+├── api/                    # JSP 后端接口
+│   ├── products.jsp        # 商品列表/详情
+│   ├── categories.jsp      # 分类
+│   ├── subscribe.jsp       # 邮件订阅
+│   └── order.jsp           # 订单提交
+├── migrations/
+│   ├── 001_init.sql        # 建表
+│   └── 002_seed.sql        # 初始数据
 ├── WEB-INF/
-│   ├── web.xml
-│   └── classes/db.properties
-├── migrations/            # SQL 迁移文件
-└── .trae/documents/       # PRD + 技术架构
+│   ├── web.xml             # Servlet 配置
+│   ├── classes/            # 编译产物
+│   │   ├── db.properties.example
+│   │   └── db.properties   # 真实配置（git ignored）
+│   └── lib/                # 依赖 JAR
+├── .gitignore
+├── deploy.sh               # 部署脚本
+└── README.md
 ```
 
-## 部署步骤
+## 快速开始
 
-1. **准备数据库**：在 MySQL 中执行
-   ```bash
-   mysql -uroot -p < migrations/001_init.sql
-   mysql -uroot -p < migrations/002_seed.sql
-   ```
+### 1. 克隆仓库
 
-2. **配置连接**（任选其一）：
-   - 设置环境变量：`DB_HOST / DB_PORT / DB_NAME / DB_USER / DB_PASS`
-   - 或修改 `WEB-INF/classes/db.properties`
-
-3. **放置应用**：把 `store/` 目录复制到 Tomcat `webapps/` 下
-   ```
-   /vol1/@appdata/1Panel/1panel/apps/tomcat/tomcat/data/webapps/store
-   ```
-
-4. **访问**：
-   - 内网：`http://<host>:8866/store/`
-   - 域名：`https://www.apperload.com/store/`
-
-## 框架特性
-
-- ✅ 零构建：纯 HTML / CSS / ES Module JS，部署即用
-- ✅ 响应式：桌面 / 平板 / 手机三档断点
-- ✅ 可访问：语义化 HTML + 颜色对比度 ≥ 4.5:1
-- ✅ 国际化：Intl API 原生多币种 / 多语言
-- ✅ 状态：购物车 LocalStorage 持久化
-- ✅ 后端：JSP 直连 MySQL 8.x
-- ✅ 优雅降级：API 失败自动回退到 mock 数据
-
-## 数据流
-
-```
-浏览器 (HTML+JS)
-  ├─ 静态资源 ──→ /store/...
-  └─ fetch JSON ──→ /store/api/*.jsp ──→ MySQL
+```bash
+git clone git@github.com:tyz900129/store.git
+cd store
 ```
 
-## 二次开发
+### 2. 配置数据库
 
-- **新增商品**：在 `migrations/002_seed.sql` 中插入 `products` 行
-- **新增页面**：复制 `product.html` 模板，添加 `assets/js/pages/yourpage.js`
-- **改 API**：编辑 `api/*.jsp`，调整 JSON 字段即可
-- **改样式**：编辑 `assets/css/base.css` 中的 CSS 变量（颜色 / 间距 / 圆角）
+```bash
+cp WEB-INF/classes/db.properties.example WEB-INF/classes/db.properties
+# 编辑 db.properties 填入真实数据库信息
+# 或使用环境变量（推荐）：
+#   export DB_HOST=mysql
+#   export DB_PORT=3306
+#   export DB_NAME=pawpatrol
+#   export DB_USER=root
+#   export DB_PASS=your_password
+```
 
-## 后续路线
+### 3. 初始化数据库
 
-- [ ] Stripe / PayPal 真实支付
-- [ ] 邮件确认（SendGrid / SMTP）
-- [ ] 管理后台 `/admin/`
-- [ ] 多语言 i18n
-- [ ] Algolia 全文搜索
+```bash
+mysql -u root -p pawpatrol < migrations/001_init.sql
+mysql -u root -p pawpatrol < migrations/002_seed.sql
+```
+
+### 4. 部署到 Tomcat
+
+把整个 `store/` 目录复制到 Tomcat 的 `webapps/` 下，重启 Tomcat：
+
+```bash
+cp -r store /opt/tomcat/webapps/
+/opt/tomcat/bin/catalina.sh restart
+```
+
+### 5. 访问
+
+浏览器打开 `http://localhost:8866/store/`
+
+## 开发工作流（Trae Solo）
+
+```bash
+# 1. Trae Solo 打开 store/ 目录
+# 2. AI 修改代码后点 Accept
+# 3. 提交并推送
+git add .
+git commit -m "feat: 商品详情页加入颜色切换"
+git push
+
+# 4. 服务器拉取最新
+./deploy.sh
+```
+
+## API 端点
+
+| 端点 | 方法 | 说明 |
+|------|------|------|
+| `/store/api/products.jsp` | GET | 商品列表（支持 `?category=bed&pet=dog&q=xxx`） |
+| `/store/api/products.jsp?id=1` | GET | 商品详情 |
+| `/store/api/categories.jsp` | GET | 商品分类 |
+| `/store/api/subscribe.jsp` | POST | 邮件订阅 |
+| `/store/api/order.jsp` | POST | 提交订单 |
+
+## 安全
+
+参见 `.trae/documents/SECURITY.md`（待补充）
+
+## 许可
+
+本仓库为个人/团队内部使用，未指定开源许可。
