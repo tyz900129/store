@@ -29,29 +29,17 @@
 
   // ==================== 数据库连接 ====================
   // 优先级: 环境变量 > db.properties (固定路径) > 内置默认
-  // 容器内路径: /opt/bitnami/tomcat/webapps/store/WEB-INF/classes/db.properties
-  // 兼容宿主机开发路径: /vol1/.../webapps/store/WEB-INF/classes/db.properties
-  private static final String[] DB_PROPS_CANDIDATES = {
-    System.getProperty("catalina.base") + "/webapps/store/WEB-INF/classes/db.properties",
-    "/opt/bitnami/tomcat/webapps/store/WEB-INF/classes/db.properties",
-    "/vol1/@appdata/1Panel/1panel/apps/tomcat/tomcat/data/webapps/store/WEB-INF/classes/db.properties"
-  };
+  private static final String DB_PROPS_PATH =
+    "/vol1/@appdata/1Panel/1panel/apps/tomcat/tomcat/data/webapps/store/WEB-INF/classes/db.properties";
   private static Properties DB_PROPS = null;
   private static synchronized Properties loadDbProps() {
     if (DB_PROPS != null) return DB_PROPS;
     DB_PROPS = new Properties();
-    for (String path : DB_PROPS_CANDIDATES) {
-      if (path == null) continue;
-      java.io.File f = new java.io.File(path);
-      if (f.exists() && f.canRead()) {
-        try {
-          java.io.FileInputStream fis = new java.io.FileInputStream(f);
-          DB_PROPS.load(fis);
-          fis.close();
-          if (DB_PROPS.size() > 0) break;
-        } catch (Exception e) { /* try next */ }
-      }
-    }
+    try {
+      java.io.FileInputStream fis = new java.io.FileInputStream(DB_PROPS_PATH);
+      DB_PROPS.load(fis);
+      fis.close();
+    } catch (Exception e) { /* 文件不存在时保持空,走环境变量或默认 */ }
     return DB_PROPS;
   }
 

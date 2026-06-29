@@ -29,14 +29,27 @@ store/
 │   ├── css/                # 样式（base/layout/components/pages）
 │   ├── js/                 # JS 模块（data/cart/ui/main/pages）
 │   └── img/                # 图片
+├── admin/                  # 管理后台（单页应用）
+│   ├── login.html          # 登录页
+│   └── index.html          # 控制台（仪表盘/商品/订单/订阅）
 ├── api/                    # JSP 后端接口
 │   ├── products.jsp        # 商品列表/详情
 │   ├── categories.jsp      # 分类
 │   ├── subscribe.jsp       # 邮件订阅
-│   └── order.jsp           # 订单提交
+│   ├── order.jsp           # 订单提交
+│   ├── lib.jsp             # 公共工具（JSON/安全/数据库）
+│   └── admin/              # 管理后台 API
+│       ├── login.jsp       # 登录
+│       ├── logout.jsp      # 登出
+│       ├── session.jsp     # 会话校验
+│       ├── dashboard.jsp   # 仪表盘统计
+│       ├── products.jsp    # 商品 CRUD
+│       ├── orders.jsp      # 订单管理
+│       └── subscribers.jsp # 订阅列表
 ├── migrations/
 │   ├── 001_init.sql        # 建表
-│   └── 002_seed.sql        # 初始数据
+│   ├── 002_seed.sql        # 初始数据
+│   └── 003_admin.sql       # 管理后台与安全增强
 ├── WEB-INF/
 │   ├── web.xml             # Servlet 配置
 │   ├── classes/            # 编译产物
@@ -75,6 +88,7 @@ cp WEB-INF/classes/db.properties.example WEB-INF/classes/db.properties
 ```bash
 mysql -u root -p pawpatrol < migrations/001_init.sql
 mysql -u root -p pawpatrol < migrations/002_seed.sql
+mysql -u root -p pawpatrol < migrations/003_admin.sql
 ```
 
 ### 4. 部署到 Tomcat
@@ -89,6 +103,10 @@ cp -r store /opt/tomcat/webapps/
 ### 5. 访问
 
 浏览器打开 `http://localhost:8866/store/`
+
+管理后台：`http://localhost:8866/store/admin/login.html`
+- 默认账号：`admin`
+- 默认密码：`admin123`（生产环境请立即修改）
 
 ## 开发工作流（Trae Solo）
 
@@ -113,10 +131,22 @@ git push
 | `/store/api/categories.jsp` | GET | 商品分类 |
 | `/store/api/subscribe.jsp` | POST | 邮件订阅 |
 | `/store/api/order.jsp` | POST | 提交订单 |
+| `/store/api/admin/login.jsp` | POST | 管理员登录 |
+| `/store/api/admin/logout.jsp` | POST | 登出 |
+| `/store/api/admin/dashboard.jsp` | GET | 仪表盘数据 |
+| `/store/api/admin/products.jsp` | GET/POST/DELETE | 商品 CRUD |
+| `/store/api/admin/orders.jsp` | GET/POST | 订单管理 |
+| `/store/api/admin/subscribers.jsp` | GET | 订阅列表 |
 
 ## 安全
 
-参见 `.trae/documents/SECURITY.md`（待补充）
+参见 [`.trae/documents/SECURITY.md`](.trae/documents/SECURITY.md)。主要改进包括：
+
+- 全站 API 启用安全响应头（nosniff、X-Frame-Options、XSS-Protection）
+- 管理员密码使用 PBKDF2 哈希存储
+- 所有数据库查询使用 PreparedStatement，防止 SQL 注入
+- 异常信息不再暴露给客户端
+- 订单号生成使用 SecureRandom
 
 ## 许可
 

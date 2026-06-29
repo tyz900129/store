@@ -6,23 +6,17 @@
 
 set -e
 
-# 配置（脚本自动解析路径，无需手动改）
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-STORE_DIR="$SCRIPT_DIR"
-WEBAPPS_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-GIT_CONFIG="$WEBAPPS_DIR/.gitconfig"
+# 配置
+STORE_DIR="/vol1/@appdata/1Panel/1panel/apps/tomcat/tomcat/data/webapps/store"
+GIT_CONFIG="/vol1/@appdata/1Panel/1panel/apps/tomcat/tomcat/data/webapps/.gitconfig"
 BRANCH="${1:-main}"
-LOG_DIR="$STORE_DIR/logs"
-LOG_FILE="$LOG_DIR/deploy.log"
+LOG_FILE="/vol1/@appdata/1Panel/1panel/apps/tomcat/tomcat/logs/deploy.log"
 
 # 颜色
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
-
-# 提前创建日志目录（避免 tee 报错）
-mkdir -p "$LOG_DIR" 2>/dev/null || true
 
 log() {
   echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')]${NC} $1" | tee -a "$LOG_FILE"
@@ -41,11 +35,7 @@ err() {
 [ -d "$STORE_DIR" ] || err "Store 目录不存在: $STORE_DIR"
 
 cd "$STORE_DIR" || err "无法进入 $STORE_DIR"
-
-# 注入 git 全局配置（HOME 只读时需要）
-if [ -f "$GIT_CONFIG" ]; then
-  export GIT_CONFIG_GLOBAL="$GIT_CONFIG"
-fi
+export GIT_CONFIG_GLOBAL="$GIT_CONFIG"
 
 # 拉取最新代码
 log "=========================================="

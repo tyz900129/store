@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login · PawPatrol Store</title>
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <style>
+    :root { --primary:#2c3e50; --accent:#e67e22; --bg:#f5f6fa; --card:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,sans-serif; background:var(--bg); display:flex; align-items:center; justify-content:center; min-height:100vh; }
+    .login-card { background:var(--card); padding:40px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,.08); width:100%; max-width:380px; }
+    .login-card h1 { margin:0 0 8px; font-size:22px; color:var(--primary); }
+    .login-card p { margin:0 0 24px; color:#666; font-size:14px; }
+    .field { margin-bottom:16px; }
+    .field label { display:block; font-size:13px; color:#555; margin-bottom:6px; font-weight:500; }
+    .field input { width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; }
+    .field input:focus { outline:none; border-color:var(--accent); }
+    button { width:100%; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-size:14px; cursor:pointer; }
+    button:hover { opacity:.9; }
+    .msg { margin-top:12px; font-size:13px; text-align:center; min-height:18px; }
+    .msg.err { color:#c0392b; }
+    .msg.ok { color:#27ae60; }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h1>PawPatrol 管理后台</h1>
+    <p>请输入管理员账号密码</p>
+    <div class="field">
+      <label>用户名</label>
+      <input type="text" id="user" placeholder="admin" autocomplete="username">
+    </div>
+    <div class="field">
+      <label>密码</label>
+      <input type="password" id="pass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button id="btn">登录</button>
+    <div class="msg" id="msg"></div>
+  </div>
+  <script>
+    async function login() {
+      const msg = document.getElementById('msg');
+      msg.className = 'msg';
+      msg.textContent = '';
+      const username = document.getElementById('user').value.trim();
+      const password = document.getElementById('pass').value;
+      if (!username || !password) { msg.className = 'msg err'; msg.textContent = '请填写用户名和密码'; return; }
+      try {
+        const res = await fetch('../api/admin/login.jsp', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({username, password})
+        });
+        const data = await res.json();
+        if (data.code === 0) {
+          msg.className = 'msg ok'; msg.textContent = '登录成功，跳转中…';
+          location.href = 'index.html';
+        } else {
+          msg.className = 'msg err'; msg.textContent = data.msg || '登录失败';
+        }
+      } catch (e) {
+        msg.className = 'msg err'; msg.textContent = '网络错误';
+      }
+    }
+    document.getElementById('btn').addEventListener('click', login);
+    document.getElementById('pass').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+  </script>
+</body>
+</html>
